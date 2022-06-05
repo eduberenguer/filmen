@@ -17,12 +17,7 @@
         "jsx": "react-jsx"
     },
     "exclude": ["node_modules", "dist"],
-    "include": [
-        "**/*.ts",
-        "**/*.tsx",
-        "routes/routes.js",
-        "src/pages/home/Home.jsx"
-    ],
+    "include": ["**/*.ts", "**/*.tsx", "src/context/ContextProvider.js"],
     "ts-node": {
         "esm": true
     }

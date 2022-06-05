@@ -1,20 +1,23 @@
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 // @ts-ignore
-import App from './App.tsx';
+import App from './App.jsx';
 // @ts-ignore
 import reportWebVitals from './reportWebVitals.ts';
+import { ContextProvider } from './context/ContextProvider.js';
 
-const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <ContextProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </ContextProvider>
     </React.StrictMode>
 );
 
