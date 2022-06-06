@@ -29,10 +29,11 @@
                 "tsx": "never"
             }
         ],
-        "no-shadow": "off",
         "@typescript-eslint/no-shadow": ["error"],
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "no-unused-vars": "off",
-        "no-console": "off"
+        "no-console": "off",
+        "no-return-await": "off",
+        "no-shadow": "off"
     }
 }

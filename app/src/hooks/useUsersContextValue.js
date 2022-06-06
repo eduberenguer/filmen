@@ -3,8 +3,10 @@ import { usersReducer } from '../reducer/usersReducer.ts';
 import { actionTypes } from '../reducer/actionTypes.ts';
 import * as api from '../services/api.js';
 
+const getUserInSession = () => JSON.parse(sessionStorage.getItem('user'));
+
 export function useUsersContextValue() {
-    const [user, dispatch] = useReducer(usersReducer, null);
+    const [user, dispatch] = useReducer(usersReducer, getUserInSession());
 
     const registerUser = (data) => {
         api.insertNewUser(data).then((res) => {

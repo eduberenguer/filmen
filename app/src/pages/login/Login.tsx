@@ -8,7 +8,7 @@ import { Context } from '../../context/ContextProvider.js';
 
 export function Login() {
     const [dataLogin, setDataLogin] = useState({});
-    const { loginUser }: any = useContext(Context);
+    const { user, loginUser }: any = useContext(Context);
 
     const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
         setDataLogin({ ...dataLogin, [ev.target.name]: ev.target.value });
