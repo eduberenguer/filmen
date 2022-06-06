@@ -19,11 +19,14 @@ export const registerNewUser = async (
     }
 };
 
-export const loginUser = async (req: Request, res: Request, next: Function) => {
-    const loginUser = { ...req.body };
-    console.log("loginUser", loginUser);
+export const loginUserData = async (
+    req: Request,
+    res: Request,
+    next: Function
+) => {
+    const dataUser = { ...req.body };
     try {
-        crud.loginUser(loginUser, Filmen).then((data: any) => res.json(data));
+        crud.loginUser(dataUser, Filmen).then((data: any) => res.json(data));
     } catch (err) {
         next(err);
     }
