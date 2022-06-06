@@ -20,9 +20,14 @@ export function useUsersContextValue() {
         });
     };
 
+    const logout = () => {
+        dispatch({ type: actionTypes.logout, payload: {} });
+    };
+
     return {
         user,
         loginUser,
         registerUser,
+        logout,
     };
 }
