@@ -8,7 +8,7 @@ module.exports = {
         },
     },
     plugins: [require('@tailwindcss/forms')],
-    fontFamily: {
-        sans: ['sans-serif', 'system-ui'],
-    },
+    // fontFamily: {
+    //     sans: ['Helvetica Neue'],
+    // },
 };

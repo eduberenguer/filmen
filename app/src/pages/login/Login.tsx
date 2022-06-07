@@ -5,12 +5,15 @@ import React, {
     useContext,
     useState,
 } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // @ts-ignore
 import { Button } from '../../components/Button.tsx';
+// @ts-ignore
+import { Header } from '../../components/Header.tsx';
 import { Context } from '../../context/ContextProvider.js';
 
 export function Login() {
+    const navigate = useNavigate();
     const [dataLogin, setDataLogin] = useState({});
     const { loginUser }: any = useContext(Context);
 
@@ -21,12 +24,13 @@ export function Login() {
     const handleSubmit = async (ev: SyntheticEvent<HTMLFormElement>) => {
         ev.preventDefault();
         loginUser(dataLogin);
+        navigate('/');
     };
 
     return (
         <div className="h-full">
-            <p className="text-white">Logo</p>
-            <div className="flex items-center justify-center h-full flex-col">
+            <Header />
+            <div className="flex items-center justify-center h-3/4 flex-col">
                 <p className="text-white text-3xl font-bold">Iniciar Sesión</p>
                 <form
                     action="#"

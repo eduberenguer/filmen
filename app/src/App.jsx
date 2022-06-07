@@ -11,7 +11,7 @@ import { Footer } from './components/Footer.tsx';
 function App() {
     const { user } = useContext(Context);
     return (
-        <div className="bg-black h-screen font-sans">
+        <div className="bg-black h-screen">
             <Routes>
                 <Route
                     path="/"

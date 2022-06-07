@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { Context } from '../../context/ContextProvider.js';
 // @ts-ignore
 import { Button } from '../../components/Button.tsx';
+// @ts-ignore
+import { Header } from '../../components/Header.tsx';
 
 export function Register() {
     const navigate = useNavigate();
@@ -22,9 +24,9 @@ export function Register() {
 
     return (
         <div className="h-full">
-            <p className="text-white">Logo</p>
+            <Header />
             <form
-                className="flex items-center justify-center h-full flex-col"
+                className="flex items-center justify-center h-3/4 flex-col"
                 onSubmit={handleSubmit}
             >
                 <p className="text-white text-3xl font-bold">Registrarse</p>
