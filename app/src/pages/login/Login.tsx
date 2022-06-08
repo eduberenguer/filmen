@@ -42,7 +42,7 @@ export function Login() {
                             Email
                         </span>
                         <input
-                            type="text"
+                            type="email"
                             className="form-input px-4 py-3 rounded"
                             onChange={handleChange}
                             name="email"
@@ -53,7 +53,7 @@ export function Login() {
                             Password
                         </span>
                         <input
-                            type="email"
+                            type="password"
                             className="form-input px-4 py-3 rounded"
                             name="password"
                             onChange={handleChange}

@@ -46,7 +46,7 @@ export function Register() {
                         Email
                     </span>
                     <input
-                        type="text"
+                        type="email"
                         name="email"
                         className="form-input px-4 py-3 rounded"
                         onChange={handleChange}
