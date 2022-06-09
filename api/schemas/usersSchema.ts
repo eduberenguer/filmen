@@ -7,6 +7,7 @@ interface IUserSchema {
     email: string;
     date: string;
     password: string;
+    favourite?: Array<string>;
 }
 
 export const usersSchema = new Schema<IUserSchema>({
@@ -14,4 +15,5 @@ export const usersSchema = new Schema<IUserSchema>({
     email: { type: String },
     date: { type: String },
     password: { type: String },
+    favourite: { type: Array },
 });

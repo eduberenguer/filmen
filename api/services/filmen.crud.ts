@@ -5,8 +5,17 @@ export const insertNewUser = async (dataUser, Filmen) => {
 
 export const loginUser = async (data, Filmen) => {
     const result = await Filmen.findOne({
-        $and: [{ email: data.email, password: data.password }],
+        $and: [{ email: data.email }],
     });
+    return result;
+};
+
+export const addFavorite = async (userId, itemId, Filmen) => {
+    const result = await Filmen.findOneAndUpdate(
+        { _id: userId },
+        { $push: { favourite: itemId } },
+        { new: true }
+    );
     return result;
 };
 

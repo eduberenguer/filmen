@@ -16,6 +16,12 @@ app.use(cors());
 
 app.use("/", router);
 
+app.use((err, req, resp, next) => {
+    console.log(err.message);
+    resp.status(err.status);
+    resp.send({ error: err.message });
+});
+
 export const connection = app.listen(port, (err) => {
     if (err) console.log("Error in server setup");
     console.log("Server listening on Port", port);
