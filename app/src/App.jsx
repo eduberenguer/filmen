@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Home } from './pages/home/Home.tsx';

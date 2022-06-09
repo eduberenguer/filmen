@@ -3,20 +3,28 @@ import * as api from '../services/api.js';
 // @ts-ignore
 import { actionTypes } from './actionTypes.ts';
 
-export const insertNewUser = (data: Object, dispatch: Function) => {
-    api.insertNewUser(data).then((res) => {
-        dispatch({ type: actionTypes.insertNewUser, payload: res.data });
-    });
-};
+export const insertNewUser = (data: Object) => ({
+    type: actionTypes.insertNewUser,
+    payload: data,
+});
 
-export const loginUser = async (data: Object, dispatch: Function) => {
-    api.loginDataUser(data).then((res) => {
-        dispatch({ type: actionTypes.loginUser, payload: res.data });
-    });
-};
+export const loginUser = (data: Object) => ({
+    type: actionTypes.loginUser,
+    payload: data,
+});
 
-export const getUserInfo = (dispatch: Function) => {
-    api.getUsers().then((res) => {
-        dispatch({ type: actionTypes.getUsers, payload: res.data });
-    });
-};
+export const logout = () => ({
+    type: actionTypes.logout,
+    payload: {},
+});
+
+// export const getUserInfo = (dispatch: Function) => {
+//     api.getUsers().then((res) => {
+//         dispatch({ type: actionTypes.getUsers, payload: res.data });
+//     });
+// };
+
+export const addFavourite = (data: Object) => ({
+    type: actionTypes.addFavourite,
+    payload: data,
+});

@@ -11,6 +11,8 @@ import { Button } from '../../components/Button.tsx';
 // @ts-ignore
 import { Header } from '../../components/Header.tsx';
 import { Context } from '../../context/ContextProvider.js';
+// @ts-ignore
+import { customAlert } from '../../utils/customAlert.ts';
 
 export function Login() {
     const navigate = useNavigate();
@@ -23,8 +25,12 @@ export function Login() {
 
     const handleSubmit = async (ev: SyntheticEvent<HTMLFormElement>) => {
         ev.preventDefault();
-        loginUser(dataLogin);
-        navigate('/');
+        const result = await loginUser(dataLogin);
+        if (result.status === 200) {
+            navigate('/');
+        } else {
+            customAlert(result);
+        }
     };
 
     return (

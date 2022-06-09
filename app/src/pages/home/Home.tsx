@@ -17,24 +17,27 @@ export function Home() {
     const urlImages = 'https://image.tmdb.org/t/p/w500/';
     const navigate = useNavigate();
     const { user } = useContext(Context);
+    const [videoType, setVideoType] = useState('movie');
     const [data, setData] = useState([
         {
-            movies: [],
-            series: [],
+            popular: [],
+            rated: [],
             trending: [],
         },
     ]);
 
-    const getData = async () => {
-        const movies = await request.retrieveMostPopularMovies();
-        const series = await request.retrieveMostPopularSeries();
-        const trending = await request.retrieveTrending();
-        setData([{ movies, series, trending }]);
+    const getData = async (typeItem: string) => {
+        const popular = await request.retrieveMostPopularMovies(typeItem);
+        const rated = await request.retrieveTopRatedMovies(typeItem);
+        const trending = await request.retrieveTrending(typeItem);
+        // const series = await request.retrieveMostPopularSeries();
+
+        setData([{ popular, rated, trending }]);
     };
 
     useEffect(() => {
-        getData();
-    }, []);
+        getData(videoType);
+    }, [videoType]);
 
     const detailPage = (id: String, type: String) => {
         navigate(`/detail/${type}/${id}`);
@@ -43,18 +46,29 @@ export function Home() {
     return (
         <div className="p-1">
             <Header />
-            <p className="text-white text-lg mb-4 ml-2">Hola {user.name}</p>
+            <div>
+                <p className="text-white text-lg mb-4 ml-2">Hola {user.name}</p>
+                <button
+                    type="button"
+                    className="text-white"
+                    onClick={() =>
+                        setVideoType(videoType === 'movie' ? 'tv' : 'movie')
+                    }
+                >{`${
+                    videoType === 'movie' ? 'Ver series' : 'Ver peliculas'
+                }`}</button>
+            </div>
             <p className="text-white pl-2 mt-2">Éxitos del momento</p>
             <div className="flex flex-row items-center flex-nowrap overflow-y-auto">
                 {data &&
                     data.length &&
-                    data[0].movies.map((item: any) => (
+                    data[0].popular.map((item: any) => (
                         <img
                             src={`${urlImages}${item.poster_path}`}
                             alt={item.title}
                             width="30%"
                             className="mr-1 rounded"
-                            onClick={() => detailPage(item.id, 'movie')}
+                            onClick={() => detailPage(item.id, videoType)}
                         />
                     ))}
             </div>
@@ -62,27 +76,27 @@ export function Home() {
             <div className="flex flex-row items-center flex-nowrap overflow-y-auto">
                 {data &&
                     data.length &&
-                    data[0].movies.map((item: any) => (
+                    data[0].popular.map((item: any) => (
                         <img
                             src={`${urlImages}${item.poster_path}`}
                             alt={item.title}
                             width="30%"
                             className="mr-1 rounded"
-                            onClick={() => detailPage(item.id, 'tv')}
+                            onClick={() => detailPage(item.id, videoType)}
                         />
                     ))}
             </div>
-            <p className="text-white pl-2 mt-2">Las mejores series</p>
+            <p className="text-white pl-2 mt-2">Aclamadas por el público</p>
             <div className="flex flex-row items-center flex-nowrap overflow-y-auto">
                 {data &&
                     data.length &&
-                    data[0].series.map((item: any) => (
+                    data[0].rated.map((item: any) => (
                         <img
                             src={`${urlImages}${item.poster_path}`}
                             alt={item.title}
                             width="30%"
                             className="mr-1 rounded"
-                            onClick={() => detailPage(item.id, 'tv')}
+                            onClick={() => detailPage(item.id, videoType)}
                         />
                     ))}
             </div>
@@ -96,7 +110,7 @@ export function Home() {
                             alt={item.title}
                             width="30%"
                             className="mr-1 rounded"
-                            onClick={() => detailPage(item.id, 'tv')}
+                            onClick={() => detailPage(item.id, videoType)}
                         />
                     ))}
             </div>

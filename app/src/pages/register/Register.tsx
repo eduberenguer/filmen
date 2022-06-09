@@ -6,6 +6,8 @@ import { Context } from '../../context/ContextProvider.js';
 import { Button } from '../../components/Button.tsx';
 // @ts-ignore
 import { Header } from '../../components/Header.tsx';
+// @ts-ignore
+import { customAlert } from '../../utils/customAlert.ts';
 
 export function Register() {
     const navigate = useNavigate();
@@ -16,10 +18,14 @@ export function Register() {
         setDataForm({ ...dataForm, [ev.target.name]: ev.target.value });
     };
 
-    const handleSubmit = (ev: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (ev: FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
-        registerUser(dataForm);
-        navigate('/login');
+        const result = await registerUser(dataForm);
+        if (result === 200) {
+            navigate('/login');
+        } else {
+            customAlert(result);
+        }
     };
 
     return (

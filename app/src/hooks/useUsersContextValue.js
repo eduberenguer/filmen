@@ -1,27 +1,46 @@
 import { useReducer, useEffect } from 'react';
+import swal from 'sweetalert';
 import { usersReducer } from '../reducer/usersReducer.ts';
-import { actionTypes } from '../reducer/actionTypes.ts';
 import * as api from '../services/api.js';
+// @ts-ignore
+import * as action from '../reducer/actionCreators.ts';
 
 const getUserInSession = () => JSON.parse(sessionStorage.getItem('user'));
 
 export function useUsersContextValue() {
     const [user, dispatch] = useReducer(usersReducer, getUserInSession());
 
-    const registerUser = (data) => {
-        api.insertNewUser(data).then((res) => {
-            dispatch({ type: actionTypes.insertNewUser, payload: res.data });
-        });
+    const registerUser = async (data) => {
+        const result = await api
+            .insertNewUser(data)
+            .then((res) => {
+                dispatch(action.insertNewUser(res.data));
+                return res;
+            })
+            .catch((error) => error);
+        return result;
     };
 
-    const loginUser = (data) => {
-        api.loginDataUser(data).then((res) => {
-            dispatch({ type: actionTypes.loginUser, payload: res.data });
-        });
+    const loginUser = async (data) => {
+        const result = await api
+            .loginDataUser(data)
+            .then((res) => {
+                dispatch(action.loginUser(res.data));
+                return res;
+            })
+            .catch((error) => error);
+
+        return result;
     };
 
     const logout = () => {
-        dispatch({ type: actionTypes.logout, payload: {} });
+        dispatch(action.logout());
+    };
+
+    const addFavourite = (userId, itemId) => {
+        api.addFavourite(userId, itemId).then((res) => {
+            dispatch(action.addFavourite(res.data));
+        });
     };
 
     return {
@@ -29,5 +48,6 @@ export function useUsersContextValue() {
         loginUser,
         registerUser,
         logout,
+        addFavourite,
     };
 }

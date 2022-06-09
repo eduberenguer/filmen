@@ -3,4 +3,5 @@ export const actionTypes = {
     loginUser: 'LOGIN_USER',
     getUsers: 'GET_USERS',
     logout: 'LOGOUT',
+    addFavourite: 'ADD_FAVOURITE',
 };
