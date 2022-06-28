@@ -5,6 +5,9 @@
     html {
         font-family: Helvetica Neue, system-ui, sans-serif;
     }
+    .detail-img {
+        height: 200px;
+    }
 }
 
 body {

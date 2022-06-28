@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable camelcase */
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 // @ts-ignore
 import { UserFooter } from '../../components/UserFooter.tsx';
 // @ts-ignore
@@ -10,6 +10,7 @@ import { Context } from '../../context/ContextProvider.js';
 
 export function Detail() {
     const urlImages = 'https://image.tmdb.org/t/p/w500/';
+    const navigate = useNavigate();
     const { user, addFavourite }: any = useContext(Context);
     const location = useParams();
     const movieId = location.id || '';
@@ -62,19 +63,21 @@ export function Detail() {
                         <img
                             src={`${urlImages}${data.poster_path}`}
                             alt={data.title}
-                            width="30%"
+                            height="10%"
+                            className="detail-img"
                         />
                         <p className="text-white">{data.overview}</p>
                     </div>
-                    <iframe
-                        src={`https://www.youtube.com/embed/${data.video}`}
-                        title="trailer"
-                        frameBorder="0"
-                        className="mb-5"
-                    />
+                    <div>
+                        <iframe
+                            src={`https://www.youtube.com/embed/${data.video}`}
+                            title="trailer"
+                            frameBorder="0"
+                            className="mb-5"
+                        />
+                    </div>
                 </div>
             )}
-            <UserFooter />
         </>
     );
 }
