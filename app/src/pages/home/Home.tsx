@@ -114,7 +114,6 @@ export function Home() {
                         />
                     ))}
             </div>
-            <UserFooter />
         </div>
     );
 }
